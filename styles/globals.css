@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --primary-color-num: 300 68% 44%;
+    --primary-color: hsl(var(--primary-color-num));
+    --secondary-color-num: 342 87% 66%;
+    --secondary-color: hsl(var(--secondary-color-num));
+    --secondary-color-lite: hsl(342, 93%, 84%);
+    --dark-gray: #1E1E1E;
+    --gray-one:#C3C3C3;
+}
+
+body {
+    background-color: #07070A;
+}
+
+h1 {
+    color: var(--secondary-color);
+}
