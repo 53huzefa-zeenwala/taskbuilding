@@ -1,0 +1,45 @@
+.navbar {
+    @apply flex justify-between items-end py-3 px-4
+}
+
+.navbar > div {
+    @apply text-2xl font-semibold
+}
+.navbar > div:hover, .navbar > div:focus {
+   color: var(--gray-one);
+}
+
+.main {
+    @apply pt-[25vh]
+}
+
+.main > h1 {
+    @apply text-7xl text-center font-semibold px-4
+}
+.main > .buttons {
+    @apply flex justify-center gap-6 pt-12
+}
+
+.buttons > button {
+    @apply py-3 px-4 text-xl font-bold rounded-lg tracking-wider cursor-pointer
+}
+
+.buttons > .one {
+    background-color: var(--secondary-color);
+    transition: background-color .5s, color 0.5s;
+}
+
+.buttons > .two {
+    transition: background-color .5s, color 0.5s;
+    background-color: var(--dark-gray);
+    color: var(--gray-one);
+}
+
+.buttons > .one:hover, .buttons > .one:focus {
+    color: var(--secondary-color);
+    background-color: #fff;
+}
+.buttons > .two:hover, .buttons > .two:focus {
+    color: var(--dark-gray);
+    background-color: var(--gray-one);
+}
