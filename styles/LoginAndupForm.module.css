@@ -1,0 +1,72 @@
+.main {
+    @apply flex justify-center flex-col px-8 items-center h-[100vh]
+}
+
+.main > .heading > h1 {
+  @apply text-center text-7xl font-bold pb-4
+}
+.main > .heading > p {
+    @apply text-lg font-medium text-center text-gray-400
+}
+
+.main > form {
+    @apply pt-8 w-full
+}
+
+.main > form  > section {
+    @apply flex flex-col w-full gap-1 pt-2
+}
+
+.input > label {
+    @apply text-lg font-medium pl-1 tracking-wider
+}
+
+.input > input {
+    @apply py-2 px-4 text-lg font-medium text-black w-full rounded-md outline-none bg-transparent text-white
+}
+
+.input > input {
+    border:  1px solid var(--gray-one);
+}
+
+.input > input:hover, .input > input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px 0px var(--primary-color);
+}
+
+.main > form > button {
+    @apply w-full py-2 my-4 rounded-md font-bold text-lg tracking-wider
+}
+.main > form > button {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color-lite));
+}
+.main > form > button:hover, .main > form > button:focus {
+    box-shadow: 0 0 10px 0px var(--primary-color);
+}
+
+.orOption {
+    @apply flex w-full justify-center items-center text-lg font-medium
+}
+
+.orOption > span {
+    @apply w-full h-0.5 bg-[#C3C3C3] mx-2
+}
+.googleButton {
+    @apply w-full flex justify-center items-center gap-1 font-semibold py-2 rounded-md  border-[#c3c3c3] border-2 my-4 text-[#c3c3c3] text-xl
+}
+.googleButton:hover, .googleButton:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px 0px var(--primary-color);
+}
+
+.isAccount {
+    color: #969696;
+    padding: 0.5rem 0;
+    font-size: 1.15rem;
+}
+
+.isAccount > span {
+    color: #fff;
+    cursor: pointer;
+    padding-left: 0.25rem;
+}

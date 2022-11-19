@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import style from '../styles/LoginForm.module.css'
+import style from '../styles/LoginAndupForm.module.css'
 
 export default function LoginForm() {
     return (
@@ -11,11 +11,11 @@ export default function LoginForm() {
             <form>
                 <section className={style.input}>
                     <label htmlFor="email">Email</label>
-                    <input type="email" name='email' required />
-                </section>
+                    <input type="email" name='email' placeholder='johndeo@xxxx.com' required />
+                </section>    
                 <section className={style.input}>
                     <label htmlFor="password">Password</label>
-                    <input type="password" name='password' required />
+                    <input type="password" name='password' placeholder='**********' minLength={8} required />
                 </section>
                 <button type='submit'>Login</button>
             </form>
@@ -23,7 +23,7 @@ export default function LoginForm() {
                 <span></span> or <span></span>
             </div>
             <button className={style.googleButton}><img src="/icons/google-svgrepo-com.svg" alt="" /> Continue with google</button>
-            <div className="isAccount">Don't have a account? <span><Link href={'/signup'}>Create Account</Link></span></div>
+            <div className={style.isAccount}>Don't have a account? <span><Link href={'/signup'}>Create Account</Link></span></div>
             <a>Forgot Password?</a>
         </main>
     )

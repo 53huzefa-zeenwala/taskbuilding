@@ -12,6 +12,10 @@
     --gray-one:#C3C3C3;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #07070A;
     color: #fff;
