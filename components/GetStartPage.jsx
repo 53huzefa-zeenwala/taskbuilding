@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import style from '../styles/GetStart.module.css'
+import { useStateContext } from '../context/StateContext'
 
 export default function GetStartPage() {
+  const {currentUser} = useStateContext()
   return (
     <>
       <nav className={style.navbar}>
@@ -16,7 +18,7 @@ export default function GetStartPage() {
         </h1>
         <div className={style.buttons}>
           <button className={style.one}><Link href={'/signup'}>Get Started</Link></button>
-          <button className={style.two}><Link href={'/learnmore'}>Learn more</Link></button>
+          <button className={style.two}><Link href={'/learnmore'}>Learn more</Link></button>          
         </div>
       </main>
     </>
