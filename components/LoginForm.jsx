@@ -18,22 +18,13 @@ export default function LoginForm() {
         e.preventDefault();
         try {
             setIsLoading(true)
-            signInWithEmailAndPassword(auth, email, password)
-                .then(() => {
-                    setIsLoading(false)
-                    setPassword('')
-                    setEmail('')
-                })
-                .catch((error) => {
-                    setIsLoading(false)
-                    console.log(error);
-                });
+            await signInWithEmailAndPassword(auth, email, password)
         } catch (error) {
             setIsLoading(false)
             console.log(error);
         }
     };
-    
+
     if (currentUser) replace("/home");
     return (
         <main className={style.main}>
@@ -68,7 +59,7 @@ export default function LoginForm() {
                 </section>
                 <button type="submit">Login</button>
             </form>
-            
+
             <div className={style.isAccount}>
                 Don't have a account?{" "}
                 <span>

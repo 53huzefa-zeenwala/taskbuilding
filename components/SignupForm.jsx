@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import style from "../styles/MajorForm.module.css";
 import Link from 'next/link'
-import { auth } from "../utils/firebase";
+import { auth, db } from "../utils/firebase";
 import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
 import { useStateContext } from "../context/StateContext";
 import Loader from "./Loader";
 import { useRouter } from "next/router";
+import { collection, getDocs } from "firebase/firestore";
+import addUserData from "../firebase/addUserData";
 
 export default function SignupForm() {
   const { currentUser } = useStateContext()
@@ -15,6 +17,7 @@ export default function SignupForm() {
   const [isLoading, setIsLoading] = useState(false);
   const { replace } = useRouter();
 
+
   const signUp = async (e) => {
     e.preventDefault()
     try {
@@ -22,33 +25,34 @@ export default function SignupForm() {
       if (password !== confirmPassword) {
         throw new Error('Password do not match')
       }
-      createUserWithEmailAndPassword(auth, email, password)
-        .then(() => {
-          setIsLoading(false)
-          setPassword('')
-          setEmail('')
-          setConfirmPassword('')
-        })
-        .catch((error) => {
-          setIsLoading(false)
-          console.log(error)
-        })
-    } catch (error) {
-      setIsLoading(false)
-      console.log(error)
-    }
-  }
-  const logInWithGoogle = async () => {
-    try {
-      setIsLoading(true)
-      const provider = new GoogleAuthProvider()
-      await signInWithPopup(auth, provider)
+      const { user } = await createUserWithEmailAndPassword(auth, email, password)
+      await addUserData(email, user.uid)
+      replace('/newprofile')
     } catch (error) {
       console.log(error)
     }
     setIsLoading(false)
   }
-  if (currentUser) replace('/home')
+
+  const logInWithGoogle = async () => {
+    try {
+      setIsLoading(true)
+      const provider = new GoogleAuthProvider()
+      const { user } = await signInWithPopup(auth, provider)
+      //is user exist
+      const querySnapshot = await getDocs(collection(db, `users/${user.uid}/profile`));
+      // if user is not exist do this
+      if (querySnapshot.empty === true) {
+        await addUserData(user.email, user.uid)
+        replace('/newprofile')
+        return
+      }
+         replace('/home')
+    } catch (error) {
+      console.log(error)
+    }
+    setIsLoading(false)
+  }
 
   return (
     <main className={style.main}>
