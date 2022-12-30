@@ -1,0 +1,72 @@
+.navbar {
+    @apply flex items-center px-5 py-10
+}
+.dropDownMenu {
+    @apply absolute right-2 z-10 mt-4 w-40 top-16 rounded-md shadow-lg overflow-hidden
+}
+.dropDownItems  {
+    transition: transform 0.5s ;
+    transition-delay: var(--delay);
+}
+.dropDownMenu[data-isdrop="true"] > .dropDownItems {
+    transform: translateX(0%);
+}
+.dropDownMenu[data-isdrop="false"] > .dropDownItems {
+    transform: translateX(100%);
+}
+.dropDownItems {
+    @apply block px-3 py-1.5 text-lg  font-semibold text-[var(--gray-one)] cursor-pointer bg-[var(--dark-gray)]
+}
+.dropDownItems:hover>svg, .dropDownItems:hover {
+    @apply stroke-[var(--secondary-color)] text-[var(--secondary-color)] bg-[#383838]
+}
+.dropDownItems>svg {
+    @apply stroke-[var(--gray-one)] h-5
+}
+.backButton {    
+    @apply bg-[var(--dark-gray)] h-9 rounded-xl aspect-square flex justify-center items-center
+}
+.backButton > img {
+    @apply -rotate-90
+}
+.headingAndMenu {
+    @apply pl-8 flex justify-between w-full items-center
+}
+.headingAndMenu>h1 {
+    @apply text-3xl font-normal capitalize tracking-wide
+}
+.headingAndMenu>h1 {
+    font-family: 'Roboto', sans-serif;
+}
+.headingAndMenu>.menu {
+    @apply flex gap-1 cursor-pointer p-2
+}
+.headingAndMenu>.menu:hover>span {
+    @apply bg-[var(--primary-color)]
+}
+.headingAndMenu>.menu>span {
+    @apply h-1.5 w-1.5 bg-white inline-block rounded-full
+}
+.main {
+    @apply mx-4 my-2
+}
+
+.main {
+    margin: 12px;    
+    margin-bottom: 8rem;
+}
+
+.main>h1 {
+    @apply text-4xl font-semibold capitalize pt-4 pb-4 pl-2
+}
+
+.main>h1 {
+    font-family: 'Orienta', sans-serif;
+}
+.main > div {
+    @apply flex gap-4 flex-col
+}
+
+.taskHeading {
+    @apply text-[var(--gray-one)] text-3xl pt-6 font-bold pb-1
+}

@@ -24,7 +24,7 @@ export default function LoginForm() {
             console.log(error);
         }
     };
-
+     console.log(currentUser)
     if (currentUser) replace("/home");
     return (
         <main className={style.main}>

@@ -19,4 +19,45 @@
 body {
     background-color: #07070A;
     color: #fff;
+    min-height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.skeletonLoader {
+    position: relative;
+    background-color: #474747;
+    /* height: 2.5rem; */
+    border-radius: 3px;
+    font-size: 16px;
+    /* width: 30%; */
+    overflow: hidden;
+}
+
+/* The moving element */
+.skeletonLoader::after {
+    display: block;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-100%);
+    background: -webkit-gradient(linear, left top,
+            right top, from(transparent),
+            color-stop(rgba(255, 255, 255, 0.2)),
+            to(transparent));
+
+    background: linear-gradient(90deg, transparent,
+            rgba(255, 255, 255, 0.2), transparent);
+    top: 0;
+    /* Adding animation */
+    animation: skeletonLoader 0.8s infinite;
+    z-index: 10;
+}
+
+/* skeletonLoader Animation */
+@keyframes skeletonLoader {
+    100% {
+        transform: translateX(100%);
+    }
 }

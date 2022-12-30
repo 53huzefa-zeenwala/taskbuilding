@@ -1,16 +1,24 @@
 import React from "react";
 import { useStateContext } from "../context/StateContext";
-import { signOut } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { MainContent, Navbar } from "../components/Home";
+import { useRouter } from "next/router";
+import { AddTaskButtonAndModel, CategoryMenu } from "../components";
+
 export default function home() {
-  const { currentUser } = useStateContext();
-  console.log(currentUser)
+  const { currentUser, userProfileData, openCategoryMenu, setOpenCategoryMenu } = useStateContext();
+  const { replace } = useRouter();
+  if (currentUser === undefined) {
+    replace("/login");
+  }
   return (
     <div>
-      Home
-      <button onClick={() => signOut(auth)}>
-        Logout
-      </button>
+      <CategoryMenu {...{openCategoryMenu, setOpenCategoryMenu, userProfileData}} />
+      <Navbar avatarUrl={userProfileData?.avatarUrl} setOpenCategoryMenu={setOpenCategoryMenu} />
+      <MainContent
+        nickName={userProfileData?.nickName}
+        userId={currentUser?.uid}
+      />
+      <AddTaskButtonAndModel {...{currentUser, userProfileData}} />
     </div>
   );
 }

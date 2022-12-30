@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import style from "../styles/MajorForm.module.css";
+import style from "../../styles/MajorForm.module.css";
 import Link from 'next/link'
-import { auth, db } from "../utils/firebase";
-import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
-import { useStateContext } from "../context/StateContext";
-import Loader from "./Loader";
+import { auth, db } from "../../utils/firebase";
+import { createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, sendEmailVerification } from 'firebase/auth'
+import { useStateContext } from "../../context/StateContext";
+import Loader from "../Loader";
 import { useRouter } from "next/router";
-import { collection, getDocs } from "firebase/firestore";
-import addUserData from "../firebase/addUserData";
+import { doc, getDoc } from "firebase/firestore";
+import addUserData from "../../firebase/addUserData";
+import VerificationModel from "./VerificationModel";
 
 export default function SignupForm() {
   const { currentUser } = useStateContext()
@@ -17,9 +18,11 @@ export default function SignupForm() {
   const [isLoading, setIsLoading] = useState(false);
   const { replace } = useRouter();
 
-
   const signUp = async (e) => {
     e.preventDefault()
+    if (currentUser != undefined) {
+      return replace('/home')
+    }
     try {
       setIsLoading(true)
       if (password !== confirmPassword) {
@@ -31,23 +34,26 @@ export default function SignupForm() {
     } catch (error) {
       console.log(error)
     }
-    setIsLoading(false)
   }
 
   const logInWithGoogle = async () => {
+    if (currentUser != undefined) {
+      return replace('/home')
+    }
     try {
       setIsLoading(true)
       const provider = new GoogleAuthProvider()
       const { user } = await signInWithPopup(auth, provider)
       //is user exist
-      const querySnapshot = await getDocs(collection(db, `users/${user.uid}/profile`));
+      const querySnapshot = await getDoc(doc(db, `users`, user.uid));
       // if user is not exist do this
-      if (querySnapshot.empty === true) {
+      console.log(querySnapshot.exists())
+      if (!querySnapshot.exists()) {
         await addUserData(user.email, user.uid)
         replace('/newprofile')
         return
       }
-         replace('/home')
+      replace('/home')
     } catch (error) {
       console.log(error)
     }
@@ -110,6 +116,9 @@ export default function SignupForm() {
           <Link href={"/login"}>Log in</Link>
         </span>
       </div>
+      {/* <div data-ismodelopen={isModelOpen} className={style.verificationDiv}>
+        <VerificationModel />
+      </div> */}
     </main>
   );
 }

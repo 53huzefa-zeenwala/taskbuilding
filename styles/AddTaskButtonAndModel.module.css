@@ -1,0 +1,118 @@
+.buttonDiv {
+    @apply fixed w-full bottom-12 z-30
+}
+.buttonDiv > button {
+    @apply  mx-auto w-12 block p-1.5 aspect-square rounded-xl transition-colors outline-none 
+}
+
+.buttonDiv >button {
+    background:  linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    box-shadow: 0 0 15px 0px var(--primary-color);
+    transition: all 0.25s ease;
+}
+.buttonDiv >button:hover,
+.buttonDiv >button:focus {
+    background:  linear-gradient(45deg, hsl(var(--primary-color-num) / 0.95), hsl(var(--secondary-color-num) / 0.95));
+    box-shadow: 0 0 30px 0px var(--primary-color);
+    scale: 1.05;
+}
+
+.model[data-is-visible="true"] {
+    display: flex;
+}
+.model[data-is-visible="false"] {
+    display: none;
+}
+
+.model {
+    @apply fixed top-0 bottom-0 right-0 left-0 flex justify-center items-center z-40
+}
+
+.model {
+    background-color: rgba(0, 0, 0, 0.5);
+
+}
+
+.model>form {
+    @apply w-4/5 py-4 px-6 rounded-xl bg-[#1e1e1e] max-w-xl relative
+}
+
+.model > form >img {
+    @apply w-8 absolute top-0 right-0 m-5 cursor-pointer 
+}
+
+.modelTitle {
+    @apply text-[1.7rem] font-bold pb-1.5 w-fit sm:mx-auto               
+}
+.modelTitle {
+    color: var(--secondary-color);
+    border-color: var(--secondary-color-lite);
+}
+
+.model>form>section {
+    @apply flex w-full pt-2
+}
+.input {
+    @apply flex-col gap-1
+}
+.input>label {
+    @apply text-lg font-medium pl-1 tracking-wider
+}
+
+.input> textarea,
+.input>input,
+.input>select {
+    @apply py-2 px-4 text-lg font-medium w-full rounded-md outline-none bg-transparent text-white
+}
+
+.input> textarea,
+.input>input,
+.input>select {
+    border: 1px solid var(--gray-one);
+}
+
+.input> textarea:hover,
+.input> textarea:focus,
+.input>input:hover,
+.input>input:focus,
+.input>select:hover,
+.input>select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px 0px var(--primary-color);
+}
+
+.modelButtonDiv {
+    @apply flex gap-2
+}
+
+.modelButtonDiv>.buttonOne {
+    @apply w-full py-2 my-4 rounded-md font-bold text-xl capitalize
+}
+
+.modelButtonDiv>.buttonOne {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color-lite));
+}
+
+.modelButtonDiv>button:hover,
+.modelButtonDiv>button:focus {
+    box-shadow: 0 0 20px 2px var(--primary-color);
+}
+
+.input>select>option {
+    @apply text-black capitalize
+}
+
+.buttonTwo {
+    @apply w-full flex justify-center items-center gap-1 font-semibold py-2 rounded-md border-[#c3c3c3] border-2 my-4 text-[#c3c3c3] text-xl cursor-pointer
+}
+
+.buttonTwo:hover,
+.buttonTwo:focus {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 0 10px 0px var(--primary-color);
+}
+
+.checkBoxInput {
+    @apply flex-row items-center text-base font-medium gap-1 pt-3
+}

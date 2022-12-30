@@ -1,0 +1,76 @@
+.main {
+    @apply pt-2 px-2
+}
+.main > h2 {
+    @apply text-2xl font-semibold flex justify-between py-2
+}
+.main > h2 {
+    font-family: 'Roboto', sans-serif;
+}
+.main > h2 > span{
+    @apply text-base font-semibold text-[var(--secondary-color)] capitalize
+}
+.tasks {
+    @apply flex flex-col gap-5
+}
+
+.task {
+    @apply bg-[var(--dark-gray)] rounded-2xl pb-1.5 px-3 flex overflow-y-hidden 
+}
+
+.task>span {
+    @apply w-6 h-16 flex justify-center items-center
+}
+.middleDiv  {
+    @apply px-2 flex flex-col gap-2 overflow-hidden w-full
+}
+.titleAndStar {
+    @apply flex justify-between items-center bg-[var(--dark-gray)] text-lg font-bold leading-5 z-10 pt-2.5 
+}
+.titleAndStar >span {
+    @apply w-[30px] h-[30px]
+}
+.titleAndStar>h3 {
+    @apply h-10 flex items-center w-11/12 cursor-pointer overflow-hidden
+}
+
+.description {
+    @apply text-[var(--gray-one)] font-bold font-['Orienta'] h-20
+}
+.categoryAndDate {
+    @apply flex justify-between items-center
+}
+
+.category {
+    @apply flex gap-2 items-center text-sm font-bold
+}
+.category > span {
+    @apply h-[1.1rem] p-1 flex items-center justify-center  aspect-square rounded-md bg-current overflow-hidden
+}
+.date {
+    @apply flex gap-2 items-center text-sm font-bold text-[var(--primary-color)]
+}
+.date > img {
+    @apply h-2/5
+}
+
+/* animate open and close  */
+.task[data-isopen="true"] {
+    height: 10.5rem;
+}
+.task[data-isopen="false"] {
+    height: 5rem;
+}
+.task, .descriptionAndDetail {
+    transition: transform 1s, height 1s ;
+}
+.task[data-isopen="true"]>.middleDiv>.descriptionAndDetail {
+    transform: translateY(0);
+}
+.task[data-isopen="false"]>.middleDiv>.descriptionAndDetail {
+    transform: translateY(-5.25rem);
+}
+
+.slideArrow {
+    @apply cursor-pointer
+}

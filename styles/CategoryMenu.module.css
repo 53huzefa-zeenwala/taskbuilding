@@ -1,0 +1,66 @@
+.main {
+    background-color: rgba(10, 10, 10);
+    transition: transform 0.5s ease-in-out;
+}
+
+.main {
+    @apply fixed w-72 h-screen z-50 left-0 py-4
+}
+
+.main[data-isopen="true"] {
+    transform: translateX(0);
+}
+
+.main[data-isopen="false"] {
+    transform: translateX(-100%);
+}
+
+.title {
+    @apply text-3xl font-semibold px-4
+}
+
+.closeButton {
+    @apply absolute w-10 right-0 top-0 m-4
+}
+
+.main>ul {
+    @apply flex gap-1 flex-col py-6
+}
+
+.category {
+    @apply flex gap-4 h-16 items-center overflow-hidden py-2 text-2xl font-semibold px-4 hover:bg-slate-800
+}
+.category > span {
+    @apply h-3/4 flex items-center justify-center  aspect-square rounded-lg bg-current
+}
+
+.category>span>img {
+    @apply h-3/4
+}
+.logoutButton {
+    @apply flex items-center absolute bottom-12 right-0 mx-4 my-4 gap-1.5 text-xl font-semibold
+}
+.logoutButton >  svg {
+    @apply h-5 stroke-white
+}
+.logoutButton:hover {
+    color: var(--secondary-color);
+}
+.logoutButton:hover > svg {
+    stroke: var(--secondary-color);
+}
+
+.lowerCategoryDiv {
+    @apply fixed top-0 left-0 bg-black bg-opacity-30 h-screen w-full z-40
+}
+.lowerCategoryDiv {
+    transition: opacity 0.5s ;
+}
+.lowerCategoryDiv [data-isopen="true"] {
+    opacity: 1;
+}
+
+.lowerCategoryDiv[data-isopen="false"] {
+    opacity: 0;
+    visibility: hidden;
+}
