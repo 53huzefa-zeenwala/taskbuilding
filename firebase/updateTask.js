@@ -1,5 +1,4 @@
 import { doc, updateDoc } from "firebase/firestore"
-import { useStateContext } from "../context/StateContext"
 import { db } from "../utils/firebase"
 
 

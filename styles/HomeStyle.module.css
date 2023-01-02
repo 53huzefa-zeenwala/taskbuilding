@@ -6,11 +6,17 @@
     @apply w-11 cursor-pointer rounded-full overflow-hidden
 }
 .dropDownMenu {
-    @apply absolute right-2 z-10 mt-4 w-40 top-16 rounded-md shadow-lg overflow-hidden
+    @apply absolute right-2 z-20 mt-4 w-40 top-16 rounded-md shadow-lg overflow-hidden
 }
-.dropDownItems  {
-    transition: transform 0.5s ;
+.dropDownItems, .dropDownMenu  {
+    transition: transform 0.5s, visibility 0.75s ease ;
     transition-delay: var(--delay);
+}
+.dropDownMenu[data-isdrop="true"] {
+    visibility: visible;
+}
+.dropDownMenu[data-isdrop="false"] {
+    visibility: hidden;
 }
 .dropDownMenu[data-isdrop="true"] > .dropDownItems {
     transform: translateX(0%);
@@ -19,7 +25,7 @@
     transform: translateX(100%);
 }
 .dropDownItems {
-    @apply block px-3 py-1.5 text-lg  font-semibold text-[var(--gray-one)] cursor-pointer bg-[var(--dark-gray)]
+    @apply block px-3 py-3 text-lg  font-semibold text-[var(--gray-one)] cursor-pointer bg-[var(--dark-gray)]
 }
 .dropDownItems:hover>svg, .dropDownItems:hover {
     @apply stroke-[var(--secondary-color)] text-[var(--secondary-color)] bg-[#383838]

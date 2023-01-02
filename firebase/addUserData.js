@@ -1,7 +1,8 @@
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { db } from "../utils/firebase";
 
 export default async function addUserData(userEmail, userId) {
+  const {setAlert} = useStateContext()
   try {
     const docRef = await setDoc(
       doc(db, `users`, userId),
@@ -12,6 +13,7 @@ export default async function addUserData(userEmail, userId) {
     console.log(docRef);
     return docRef;
   } catch (error) {
+
     console.log(error);
   }
 }

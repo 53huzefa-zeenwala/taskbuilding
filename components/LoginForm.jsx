@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 import Loader from "./Loader";
 
 export default function LoginForm() {
-    const { currentUser } = useStateContext();
+    const { currentUser, setAlert } = useStateContext();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -21,6 +21,7 @@ export default function LoginForm() {
             await signInWithEmailAndPassword(auth, email, password)
         } catch (error) {
             setIsLoading(false)
+            setAlert({type: "error", message: error.message, duration: 2000, isShow: true})
             console.log(error);
         }
     };

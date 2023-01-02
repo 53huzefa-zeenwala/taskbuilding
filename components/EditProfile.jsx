@@ -1,39 +1,39 @@
-import { useState } from "react";
-import style from "../styles/MajorForm.module.css";
+import { doc, updateDoc } from 'firebase/firestore'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
 import { useStateContext } from '../context/StateContext'
-import { doc, setDoc } from "firebase/firestore";
-import { db } from "../utils/firebase";
-import Loader from "./Loader";
-import { useRouter } from "next/router";
-import { getCategories } from "../firebase/getCategories";
+import { getCategories } from '../firebase/getCategories'
+import style from "../styles/MajorForm.module.css";
+import { db } from '../utils/firebase'
+import Loader from './Loader'
 
-export default function NewProfile() {
+export default function EditProfile() {
     const { currentUser, userProfileData, setAlert } = useStateContext()
-    const [fullName, setFullName] = useState("")
-    const [nickName, setNickName] = useState("")
-    const [profession, setProfession] = useState('')
-    const AVATAR = `https://api.multiavatar.com/${nickName || 'benny'}.svg`
+    const [fullName, setFullName] = useState(userProfileData?.fullName)
+    const [nickName, setNickName] = useState(userProfileData?.nickName)
+    const [profession, setProfession] = useState(userProfileData.profession)
+    const AVATAR = `https://api.multiavatar.com/${nickName}.svg`
     const [isLoading, setIsLoading] = useState(false)
-    const [selectedCategory, setSelectedCategory] = useState([])
+    const [selectedCategory, setSelectedCategory] = useState(userProfileData.userCategories)
     const { push } = useRouter()
-    
+    console.log(userProfileData)
     const addUserProfile = async e => {
         e.preventDefault()
         if (selectedCategory.length < 3) {
-            setAlert({type: "warning", message: 'Choose at least three category', duration: 2000, isShow: true})
+            setAlert({ type: "warning", message: 'Choose at least three category', duration: 2000, isShow: true })
             return
         }
         if (!currentUser && userProfileData.isProfileDataAdded) {
-            setAlert({type: "error", message: 'Something went wrong', duration: 2000, isShow: true})            
+            setAlert({ type: "error", message: 'Something went wrong', duration: 2000, isShow: true })
             return
         }
         if (fullName.length === 0 && nickName.length === 0 && profession.length === 0) {
-            setAlert({type: "warning", message: 'Fullfil all the requirement to continue', duration: 2000, isShow: true})            
+            setAlert({ type: "warning", message: 'Fullfil all the requirement to continue', duration: 2000, isShow: true })
             return
         }
         setIsLoading(true)
         try {
-            await setDoc(doc(db, `users`, currentUser.uid), {
+            await updateDoc(doc(db, `users`, currentUser.uid), {
                 isProfileDataAdded: true,
                 fullName,
                 nickName,
@@ -44,7 +44,7 @@ export default function NewProfile() {
             }, { merge: true })
             push('/home')
         } catch (error) {
-            setAlert({type: "error", message: error.message, duration: 2000, isShow: true})
+            setAlert({ type: "error", message: error.message, duration: 2000, isShow: true })
             console.log(error)
         }
         setIsLoading(false)
@@ -104,18 +104,18 @@ export default function NewProfile() {
                     <label htmlFor="profession">Choose your profession</label>
                     <select value={profession} onChange={e => setProfession(e.target.value)} name="profession" id="" required>
                         <option>Select Profession</option>
-                        <option value="student">Student</option>
-                        <option value="employee">Employee</option>
-                        <option value="businessman">Businessman</option>
-                        <option value="household">Household Manager</option>
+                        <option selected={profession === "student"} value="student" >Student</option>
+                        <option value="employee" selected={profession === "employee"}>Employee</option>
+                        <option value="businessman" selected={profession === "businessman"}>Businessman</option>
+                        <option value="household" selected={profession === "household"}>Household Manager</option>
                     </select>
                 </section>
                 <section className={style.categoryList}>
-                    <p>Select task categories <span>* &#40; minimum: 3 &#41;</span></p>
+                    <p>Select task categories <span>Cannot be updated after initial set</span></p>
                     {categories.length != 0 ? (
                         <ul>
                             {categories.map(({ data }, i) => (
-                                <li key={i} className={isActive(data.name.toLowerCase()) ? style.active : style.notActive} onClick={() => addUserSelectedCategory(data.name.toLowerCase())}>
+                                <li key={i} className={isActive(data.name.toLowerCase()) ? style.active : style.notActive} onClick={() => addUserSelectedCategory(data.name.toLowerCase())} style={{cursor: 'not-allowed'}}>
                                     <img src={data.image} alt="" />
                                     {data.name}
                                 </li>
@@ -130,7 +130,7 @@ export default function NewProfile() {
                         </ul>
                     )}
                 </section>
-                <button type="submit">Save Profile</button>
+                <button type="submit">Update Profile</button>
             </form>
         </main>
     );

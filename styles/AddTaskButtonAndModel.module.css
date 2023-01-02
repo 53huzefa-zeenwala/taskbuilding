@@ -17,21 +17,23 @@
     scale: 1.05;
 }
 
+.model {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: visibility 0.3s ease, opacity 0.3s ease;
+}
 .model[data-is-visible="true"] {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
 }
 .model[data-is-visible="false"] {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .model {
     @apply fixed top-0 bottom-0 right-0 left-0 flex justify-center items-center z-40
 }
 
-.model {
-    background-color: rgba(0, 0, 0, 0.5);
-
-}
 
 .model>form {
     @apply w-4/5 py-4 px-6 rounded-xl bg-[#1e1e1e] max-w-xl relative

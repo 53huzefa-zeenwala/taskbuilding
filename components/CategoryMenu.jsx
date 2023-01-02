@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { findUserCategories, getCategories } from '../firebase/getCategories'
 import style from '../styles/CategoryMenu.module.css'
+import Blob from './Blob'
 
 export default function CategoryMenu({ openCategoryMenu, setOpenCategoryMenu, userProfileData }) {
     const allCategories = getCategories().documents
@@ -34,11 +35,7 @@ export default function CategoryMenu({ openCategoryMenu, setOpenCategoryMenu, us
                         <li className='skeletonLoader h-16'></li>
                     </ul>
                 )}
-                {/* <button className={style.logoutButton} onClick={() => {signOutFunction()}}>Logout
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="none" stroke="inherit" strokeWidth="2" d="M13,9 L13,2 L1,2 L1,22 L13,22 L13,15 M22,12 L5,12 M17,7 L22,12 L17,17" />
-                    </svg>
-                </button> */}
+                <Blob size={125} type="light" fromX={-5} fromY={650} rotate={300} />
             </div>
         </>
     )

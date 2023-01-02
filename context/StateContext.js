@@ -11,6 +11,13 @@ export const StateContext = ({ children }) => {
   const [userProfileData, setUserProfileData] = useState(null);
   const [openCategoryMenu, setOpenCategoryMenu] = useState(false)
 
+  const [alert, setAlert] = useState({
+    isShow: false,
+    message: "Something went wrong",
+    type: "info",
+    duration: 1000
+  })
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user || undefined);
@@ -37,7 +44,9 @@ export const StateContext = ({ children }) => {
         userLoading,
         userProfileData,
         setOpenCategoryMenu,
-        openCategoryMenu
+        openCategoryMenu,
+        alert,
+        setAlert
       }}
     >
       {children}

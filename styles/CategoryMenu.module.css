@@ -4,7 +4,7 @@
 }
 
 .main {
-    @apply fixed w-72 h-screen z-50 left-0 py-4
+    @apply fixed w-72 h-full z-50 left-0 py-4 overflow-hidden
 }
 
 .main[data-isopen="true"] {

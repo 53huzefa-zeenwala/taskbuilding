@@ -1,6 +1,5 @@
 import {
   collection,
-  getCountFromServer,
   limit,
   onSnapshot,
   orderBy,
@@ -12,7 +11,7 @@ import { db } from "../utils/firebase";
 
 export function getTaskForHome(userId, isImportant, progress, taskLimit) {
   const [documents, setDocuments] = useState([]);
-  const taskCount = 0;
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const q =
       isImportant != "both"
@@ -36,7 +35,8 @@ export function getTaskForHome(userId, isImportant, progress, taskLimit) {
         snapshot.forEach((doc) => {
           docs.push({ id: doc.id, data: doc.data() });
         });
-        setDocuments(docs);
+          setLoading(false);
+          setDocuments(docs);
       },
       (error) => {
         console.log(error);
@@ -45,17 +45,16 @@ export function getTaskForHome(userId, isImportant, progress, taskLimit) {
 
     return () => unsubscribe();
   }, [userId]);
-  return { documents, taskCount };
+  return { documents, loading };
 }
 
 export function getTaskForSpecificCategory(
   userId,
   category,
   isImportant,
-  progress,
-  taskLimit
+  progress
 ) {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [documents, setDocuments] = useState([]);
   useEffect(() => {
     if (category) {
@@ -66,13 +65,12 @@ export function getTaskForSpecificCategory(
               orderBy("timestamp", "desc"),
               where("isImportant", "==", isImportant),
               where("progress", "==", progress),
-              where("category", "==", category),
+              where("category", "==", category)
             )
           : query(
               collection(db, `users/${userId}/tasks`),
               orderBy("timestamp", "desc"),
-              where("progress", "==", progress),
-              limit(taskLimit || 5)
+              where("progress", "==", progress)
             );
       const unsubscribe = onSnapshot(
         q,
@@ -82,15 +80,59 @@ export function getTaskForSpecificCategory(
             docs.push({ id: doc.id, data: doc.data() });
           });
           setDocuments(docs);
-          setLoading(false)
+          setLoading(false);
         },
         (error) => {
           console.log(error);
         }
       );
-      console.log(category, documents, "getTask", loading)
       return () => unsubscribe();
     }
   }, [userId, category]);
+  return { documents, loading };
+}
+
+export function getTaskForSpecificType(userId, type) {
+  const [loading, setLoading] = useState(true);
+  const [documents, setDocuments] = useState([]);
+  useEffect(() => {
+    if (type) {
+      let q;
+      if (type === "important") {
+        q = query(
+          collection(db, `users/${userId}/tasks`),
+          orderBy("timestamp", "desc"),
+          where("isImportant", "==", true)
+        );
+      } else if (type === "incomplete") {
+        q = query(
+          collection(db, `users/${userId}/tasks`),
+          orderBy("timestamp", "desc"),
+          where("progress", "==", false)
+        );
+      } else {
+        q = query(
+          collection(db, `users/${userId}/tasks`),
+          orderBy("timestamp", "desc"),
+          where("progress", "==", true)
+        );
+      }
+      const unsubscribe = onSnapshot(
+        q,
+        (snapshot) => {
+          const docs = [];
+          snapshot.forEach((doc) => {
+            docs.push({ id: doc.id, data: doc.data() });
+          });
+          setDocuments(docs);
+          setLoading(false);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+      return () => unsubscribe();
+    }
+  }, [userId, type]);
   return { documents, loading };
 }

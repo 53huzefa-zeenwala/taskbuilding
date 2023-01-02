@@ -11,7 +11,7 @@ import addUserData from "../../firebase/addUserData";
 import VerificationModel from "./VerificationModel";
 
 export default function SignupForm() {
-  const { currentUser } = useStateContext()
+  const { currentUser, setAlert } = useStateContext()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -32,6 +32,7 @@ export default function SignupForm() {
       await addUserData(email, user.uid)
       replace('/newprofile')
     } catch (error) {
+      setAlert({type: "error", message: error.message, duration: 2000, isShow: true})
       console.log(error)
     }
   }
@@ -55,6 +56,7 @@ export default function SignupForm() {
       }
       replace('/home')
     } catch (error) {
+      setAlert({type: "error", message: error.message, duration: 2000, isShow: true})
       console.log(error)
     }
     setIsLoading(false)

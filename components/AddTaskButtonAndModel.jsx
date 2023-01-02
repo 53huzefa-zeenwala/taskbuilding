@@ -1,11 +1,13 @@
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 import React, { useState } from 'react'
+import { useStateContext } from '../context/StateContext'
 import style from '../styles/AddTaskButtonAndModel.module.css'
 import { db } from '../utils/firebase'
 import Loader from './Loader'
 import Star from './StarAndCustomCheckbox'
 
-export default function AddTaskButtonAndModel({ currentUser, userProfileData }) {
+export default function AddTaskButtonAndModel() {
+  const {currentUser, userProfileData, setAlert} = useStateContext()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [category, setCategory] = useState('')
@@ -32,13 +34,14 @@ export default function AddTaskButtonAndModel({ currentUser, userProfileData }) 
       setTitle('')
       setDescription('')
       setIsModelOpen(false)
+      setAlert({type: "info", message: 'Task is added successfully', duration: 2000, isShow: true})
     } catch (error) {
+      setAlert({type: "error", message: error.message, duration: 2000, isShow: true})
       console.log(error)
     }
     setIsLoading(false)
   }
   const markTask = () => setIsImportant(!isImportant)
-  console.log(userProfileData)
   return (
     <>
       {isLoading && <Loader />}
@@ -95,6 +98,7 @@ export default function AddTaskButtonAndModel({ currentUser, userProfileData }) 
             {/* <input onClick={() => setIsModelOpen(false)} type="button" value="Cancel" className={style.buttonTwo} /> */}
           </div>
         </form>
+
       </div>
     </>
   )
