@@ -14,7 +14,7 @@ export default function home() {
     replace("/newprofile")
   }
   return (
-    <div className="relative overflow-x-hidden">
+    <div className="relative overflow-x-hidden h-screen">
       <CategoryMenu {...{openCategoryMenu, setOpenCategoryMenu, userProfileData}} />
       <Navbar avatarUrl={userProfileData?.avatarUrl} setOpenCategoryMenu={setOpenCategoryMenu} />
       <Blob size={85} type="dark" fromX={275} fromY={140} rotate={300} />

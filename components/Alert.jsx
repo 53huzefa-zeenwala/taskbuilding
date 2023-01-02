@@ -20,7 +20,7 @@ export default function Alert() {
       }
     return (
         <>
-            <div className="border-l-4 p-4 m-4 absolute top-0 left-0 right-0 z-[70]" role="alert" style={{
+            <div className="border-l-4 p-4 m-4 fixed top-0 left-0 right-0 z-[70]" role="alert" style={{
                 transform: isShow ? 'translateY(0%)' : "translateY(-150%)",
                 transition: 'transform 0.25s',
                 backgroundColor: `hsl(${color},88%)`,

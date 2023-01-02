@@ -16,7 +16,7 @@ export default function AddTaskButtonAndModel() {
   const [isImportant, setIsImportant] = useState(false)
   const addTask = async (e) => {
     e.preventDefault()
-    if (!currentUser && title.length < 8 && description.length < 15 && category.length === 0 && title.length > 40 && description.length > 120) {
+    if (!currentUser && title.length < 8 && description.length < 15 && category.length === 0 && title.length > 40 && description.length > 100) {
       return console.log('fuck')
     }
     const date = new Date().toString()
@@ -77,7 +77,7 @@ export default function AddTaskButtonAndModel() {
               placeholder="ex: benny"
               required
               minLength={15}
-              maxLength={120}
+              maxLength={100}
             />
           </section>
           <section className={style.input}>

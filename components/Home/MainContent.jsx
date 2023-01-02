@@ -10,7 +10,7 @@ export default function MainContent({ nickName, userId }) {
 
   if (importantTask.length === 0 && !importantLoading && notImportantAndIncompleteTask.length === 0 && !notImportantAndIncompleteLoading && completeTask.length === 0 && !completeLoading) {
     return (
-      <h1 className={style.taskHeading}>Tasks not available. Click brlow button to add first task</h1>
+      <h1 className={style.taskHeading} style={{padding: "1rem"}}>Tasks not available. Click bellow button to add first task</h1>
     )
   }
   return (
