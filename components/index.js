@@ -9,3 +9,4 @@ export { default as GetStartPage } from "./GetStartPage";
 export { default as SignupForm } from "./SignupForm";
 export { default as MainLoader } from "./MainLoader";
 export { default as EditProfile } from "./EditProfile";
+export { default as HeadComponent } from "./HeadComponent";
