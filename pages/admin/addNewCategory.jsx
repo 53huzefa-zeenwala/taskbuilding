@@ -31,7 +31,7 @@ export default function addNewCategory() {
   }
   return (
     <>
-      {isLoading && <Loader />}
+      {/* {isLoading && <Loader />}
       <div className={style.main}>
         <form onSubmit={e => addCategory(e)}>
           <section className={style.input}>
@@ -44,7 +44,7 @@ export default function addNewCategory() {
           </section>
           <button type='submit'>Add Category</button>
         </form>
-      </div>
+      </div> */}
     </>
   )
 }

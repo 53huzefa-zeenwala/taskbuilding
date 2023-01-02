@@ -13,7 +13,6 @@ export default function Alert() {
         return () => clearTimeout(timer)
 
     }, [duration])
-    console.log(message, type)
     const color = type === "error" ? "357deg,47%" : type === "info" ? "141,50%" : "41,99%"
     function capitalizeFirstLetter(str) {
         return str.charAt(0).toUpperCase() + str.slice(1)

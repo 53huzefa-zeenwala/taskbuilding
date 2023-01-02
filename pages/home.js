@@ -16,7 +16,6 @@ export default function home() {
   if (userProfileData?.avatarUrl === undefined && userProfileData != undefined) {
       reload()
   }
-  console.log(userProfileData, currentUser)
   return (
     <div className="relative overflow-x-hidden h-screen">
       <CategoryMenu {...{openCategoryMenu, setOpenCategoryMenu, userProfileData}} />

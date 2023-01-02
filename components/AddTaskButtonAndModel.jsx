@@ -17,7 +17,8 @@ export default function AddTaskButtonAndModel() {
   const addTask = async (e) => {
     e.preventDefault()
     if (!currentUser && title.length < 8 && description.length < 15 && category.length === 0 && title.length > 40 && description.length > 100) {
-      return console.log('fuck')
+      setAlert({type: "warning", message: 'Fullfil all the requirement to continue', duration: 2000, isShow: true}) 
+      return 
     }
     const date = new Date().toString()
     try {

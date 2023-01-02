@@ -16,7 +16,6 @@ export default function EditProfile() {
     const [isLoading, setIsLoading] = useState(false)
     const [selectedCategory, setSelectedCategory] = useState(userProfileData.userCategories)
     const { push } = useRouter()
-    console.log(userProfileData)
     const addUserProfile = async e => {
         e.preventDefault()
         if (selectedCategory.length < 3) {

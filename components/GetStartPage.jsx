@@ -4,7 +4,6 @@ import { useStateContext } from '../context/StateContext'
 
 export default function GetStartPage() {
   const {currentUser} = useStateContext()
-  console.log(currentUser)
   return (
     <>
       <nav className={style.navbar}>

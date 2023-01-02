@@ -4,7 +4,6 @@ import { getTaskForSpecificType } from '../../firebase/getTask'
 
 export default function TypePage({ category, userId }) {
     const { documents: task, loading } = getTaskForSpecificType(userId, category)
-    console.log(task, loading)
     return (
         <main className={style.main}>
             <div>
