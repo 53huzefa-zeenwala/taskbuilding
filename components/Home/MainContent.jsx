@@ -1,6 +1,6 @@
 import { getTaskForHome } from '../../firebase/getTask'
 import style from '../../styles/HomeStyle.module.css'
-import Tasks from '../tasks'
+import Tasks from '../Tasks'
 
 export default function MainContent({ nickName, userId }) {
   const isTime = new Date().getHours()
