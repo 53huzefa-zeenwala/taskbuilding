@@ -18,7 +18,7 @@ export default function CategoryMenu({ openCategoryMenu, setOpenCategoryMenu, us
             <div className={style.main} data-isopen={openCategoryMenu}>
                 <h4 className={style.title}>Collections</h4>
                 <button className={style.closeButton} onClick={() => setOpenCategoryMenu(false)}>
-                    <img src="/icons/close-svgrepo-com.svg" alt="" />
+                    <img src="/icons/cross-svgrepo-com.svg" alt="" />
                 </button>
                 {categories.length != 0 ? (
                     <ul>

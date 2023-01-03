@@ -54,7 +54,7 @@ export default function AddTaskButtonAndModel() {
       <div data-is-visible={isModelOpen} className={style.model}>
         <form onSubmit={e => addTask(e)}>
           <h3 className={style.modelTitle}>Add New Task</h3>
-          <img onClick={() => setIsModelOpen(false)} src="/icons/close-svgrepo-com.svg" alt="" />
+          <img onClick={() => setIsModelOpen(false)} src="/icons/cross-svgrepo-com.svg" alt="" />
           <section className={style.input}>
             <label htmlFor="title">Title</label>
             <input

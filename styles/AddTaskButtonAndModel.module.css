@@ -40,7 +40,7 @@
 }
 
 .model > form >img {
-    @apply w-8 absolute top-0 right-0 m-5 cursor-pointer 
+    @apply w-6 absolute top-0 right-0 m-5 cursor-pointer 
 }
 
 .modelTitle {

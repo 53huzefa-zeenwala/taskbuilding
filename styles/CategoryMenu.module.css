@@ -20,7 +20,7 @@
 }
 
 .closeButton {
-    @apply absolute w-10 right-0 top-0 m-4
+    @apply absolute w-10 right-0 top-0 m-4 p-2
 }
 
 .main>ul {
